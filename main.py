@@ -16,7 +16,7 @@ database = Database(DATABASE_URL)
 mcp = FastMCP("Expense Tracker")
 
 
-@mcp.on_start()
+@mcp.on_startup()
 async def startup():
     await database.connect()
     query = """
