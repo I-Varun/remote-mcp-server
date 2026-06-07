@@ -96,4 +96,9 @@ async def delete_expense(expense_id: int) -> dict:
     return {"status": "ok", "message": f"Expense ID {expense_id} deleted successfully"}
 
 if __name__ == "__main__":
-    mcp.run()
+    port = int(os.environ.get("PORT", 8000))
+    if os.environ.get("PORT"):
+        print(f"🚀 Launching production FastMCP SSE server on port {port}...")
+        mcp.run(transport="sse", host="0.0.0.0", port=port)
+    else:
+        mcp.run()
